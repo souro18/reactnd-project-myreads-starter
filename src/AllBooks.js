@@ -3,21 +3,41 @@ import Book from './Book'
 import { Link } from 'react-router-dom'
 import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by'
+import * as BooksAPI from './BooksAPI'
 
 class AllBooks extends React.Component {
 	state = {
-    query : ''
+    found : false,
+    searchedBooks : []
   }
+  // searchedBooks= []
   updateQuery=(query)=>{
-    this.setState({query :query.trim()})
+    query =query.trim()
+    console.log("query" +query)
+    if(query) {
+      BooksAPI.search(query).then((res)=> {
+        console.log(res)
+        if(res.error) {
+          console.log("error")
+          this.setState({ searchedBooks:[]})
+          console.log("error2")
+        }
+        else {
+          console.log("books set")
+          this.setState({searchedBooks:res})
+          console.log("set2")
+        }
+    })
+    }
+    else {
+      console.log("empty")
+      this.setState({searchedBooks:[]})
+      console.log("empty2")
+    }
   }
 
   render() {
-    const match = new RegExp(escapeRegExp(this.state.query,'i'))
-    var filteredBooks= (this.state.query) ? (
-      this.props.books.filter((book) => match.test(book.title))
-      ) : this.props.books
-    filteredBooks.sort(sortBy('title'))
+
 		return (
 			<div className="search-books">
             <div className="search-books-bar">
@@ -38,12 +58,17 @@ class AllBooks extends React.Component {
             </div>
 
             <div className="search-books-results">
-              <ol className="books-grid">
-              {filteredBooks.map((book)=>
-              	<li key={book.id}><Book book={book}
+              {(this.state.searchedBooks) ? (
+                <ol className="books-grid">
+                  {this.state.searchedBooks.map((book)=>
+               <li key={book.id}><Book book={book}
                  updateBook={this.props.updateBook}/></li>
-              	)}
+               )}
               </ol>
+
+              ):(
+              <p>No Matched Results</p>
+              )}
             </div>
           </div>
 		);

@@ -7,7 +7,11 @@ class Book extends React.Component {
 			<div className="book">
 	          <div className="book-top">
 	            <div className="book-cover" style={{ width: 128, height: 193}}>
-	            	<img src={this.props.book.imageLinks.thumbnail} style={{ width: 128, height: 193}} alt={this.props.book.title}/>
+	            	{(this.props.book.imageLinks)?
+	            	(<img src={this.props.book.imageLinks.thumbnail} style={{ width: 128, height: 193}} alt={this.props.book.title}/>):
+	            	(<img src="" style={{ width: 128, height: 193}} alt={this.props.book.title}/>)
+	            	
+	            	}
 	            </div>
 	            <div className="book-shelf-changer">
 	              <select onClick={(event)=>
