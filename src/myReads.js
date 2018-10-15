@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Book from './Book'
 
-class MyReads extends React.Component {
-	render() {
+function MyReads(props) {
+
 		return (
 			<div className="list-books">
             <div className="list-books-title">
@@ -15,8 +15,8 @@ class MyReads extends React.Component {
                   <h2 className="bookshelf-title">Currently Reading</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
-                      {this.props.currentlyReading.map((book)=>
-		              	<li key={book.id}><Book book={book} updateBook= {this.props.updateBook}/></li>
+                      {props.currentlyReading.map((book)=>
+		              	<li key={book.id}><Book book={book} updateBook= {props.updateBook}/></li>
 		              	)}
                     </ol>
                   </div>
@@ -25,8 +25,8 @@ class MyReads extends React.Component {
                   <h2 className="bookshelf-title">Want to Read</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
-                      {this.props.wantToRead.map((book)=>
-		              	<li key={book.id}><Book book={book} updateBook={this.props.updateBook}/></li>
+                      {props.wantToRead.map((book)=>
+		              	<li key={book.id}><Book book={book} updateBook={props.updateBook}/></li>
 		              	)}
                     </ol>
                   </div>
@@ -35,8 +35,8 @@ class MyReads extends React.Component {
                   <h2 className="bookshelf-title">Read</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
-                      {this.props.read.map((book)=>
-		              	<li key={book.id}><Book book={book} updateBook={this.props.updateBook}/></li>
+                      {props.read.map((book)=>
+		              	<li key={book.id}><Book book={book} updateBook={props.updateBook}/></li>
 		              	)}
                     </ol>
                   </div>
@@ -57,7 +57,7 @@ class MyReads extends React.Component {
 
 
 			)
-	}
+	
 }
 
 export default MyReads
