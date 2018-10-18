@@ -25,6 +25,9 @@ class AllBooks extends React.Component {
     else {
       this.setState({searchedBooks:[]})
     }
+    this.state.searchedBooks.map((book)=>{
+
+    })
   }
 
   render() {
@@ -51,9 +54,14 @@ class AllBooks extends React.Component {
             <div className="search-books-results">
               {(this.state.searchedBooks) ? (
                 <ol className="books-grid">
-                  {this.state.searchedBooks.map((book)=>
-               <li key={book.id}><Book book={book}
+                  {this.state.searchedBooks.map((book)=>{
+                    var found = this.props.books.find((b)=>{
+                      return (b.id=== book.id)
+                    });
+                    (found) ? (book.shelf = found.shelf) : book.shelf="none";
+               return <li key={book.id}><Book book={book}
                  updateBook={this.props.updateBook}/></li>
+               }
                )}
               </ol>
 

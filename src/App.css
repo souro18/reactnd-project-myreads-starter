@@ -172,3 +172,8 @@ body, .app {
   text-align: center;
   font-size: 0.8em;
 }
+
+/* selected-shelf*/
+.selected-shelf {
+  background-color: green;
+}

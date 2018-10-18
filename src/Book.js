@@ -14,13 +14,13 @@ class Book extends React.Component {
 	            	}
 	            </div>
 	            <div className="book-shelf-changer">
-	              <select onClick={(event)=>
-	              	this.props.updateBook(this.props.book,event.target.value)}>
+	              <select onChange={(event)=>
+	              	this.props.updateBook(this.props.book,event.target.value)} defaultValue="move">
 	                <option value="move" disabled>Move to...</option>
-	                <option value="currentlyReading">Currently Reading</option>
-	                <option value="wantToRead">Want to Read</option>
-	                <option value="read">Read</option>
-	                <option value="none">None</option>
+	                <option value="currentlyReading" className={(this.props.book.shelf==='currentlyReading')? 'selected-shelf' : null}>Currently Reading</option>
+	                <option value="wantToRead" className={(this.props.book.shelf==='wantToRead')? 'selected-shelf' : null}>Want to Read</option>
+	                <option value="read" className={(this.props.book.shelf==='read')? 'selected-shelf' : null}>Read</option>
+	                <option value="none" className={(this.props.book.shelf==='none')? 'selected-shelf' : null}>None</option>
 	              </select>
 	            </div>
 	          </div>
