@@ -1,4 +1,8 @@
 {
+  "engines": {
+    "npm": "5.8.0",
+    "node": "9.11.2"
+  },
   "dependencies": {
     "escape-string-regexp": "^1.0.5",
     "prop-types": "^15.6.1",

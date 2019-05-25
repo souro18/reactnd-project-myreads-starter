@@ -25,9 +25,7 @@ class AllBooks extends React.Component {
     else {
       this.setState({searchedBooks:[]})
     }
-    this.state.searchedBooks.map((book)=>{
 
-    })
   }
 
   render() {
