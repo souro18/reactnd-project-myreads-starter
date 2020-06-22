@@ -1,4 +1,5 @@
 {
+  "homepage": "http://souro18.github.io/reactnd-project-myreads-starter/",
   "engines": {
     "npm": "5.8.0",
     "node": "9.11.2"
@@ -12,12 +13,15 @@
     "sort-by": "^1.2.0"
   },
   "devDependencies": {
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "gh-pages": "^3.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }
