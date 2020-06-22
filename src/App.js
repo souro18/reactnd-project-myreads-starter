@@ -1,7 +1,10 @@
 import React, {lazy, Suspense} from 'react'
+import { Route, Switch } from 'react-router-dom'
+
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import { Route, Switch } from 'react-router-dom'
+
+import Loader from './loader';
 const AllBooks = lazy(()=> import('./AllBooks')); 
 const MyReads = lazy(() => import('./myReads'));
 
@@ -40,24 +43,22 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
+        <Suspense fallback={<Loader/>}>
         <Switch>
           <Route path="/search">
-            <Suspense fallback={<div>Loading...</div>}>
               <AllBooks 
                 books={this.state.books}
                 updateBook= {this.updateBook}/>
-            </Suspense>
           </Route>
           <Route exact path="/">
-            <Suspense fallback={<div>Loading...</div>}>
               <MyReads 
                 currentlyReading={this.state.currentlyReading}
                 wantToRead={this.state.wantToRead}
                 read={this.state.read}
                 updateBook= {this.updateBook}/>
-            </Suspense>
           </Route>
         </Switch>
+        </Suspense>
       </div>
     )
   }

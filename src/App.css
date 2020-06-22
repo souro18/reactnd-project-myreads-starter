@@ -177,3 +177,14 @@ body, .app {
 .selected-shelf {
   background-color: green;
 }
+
+.full-screen {
+  width: 100%;
+  text-align: center;
+}
+
+.img-responsive {
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+}

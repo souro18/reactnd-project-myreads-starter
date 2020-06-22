@@ -35,9 +35,6 @@ class AllBooks extends React.Component {
             <div className="search-books-bar">
             <Link to={{
                   pathname: '/',
-                  //search: '?sort=name',
-                  //hash: '#the-hash',
-                  //state: { fromDashboard: true }
                 }} className="close-search">
                   Close
                 </Link>
@@ -50,15 +47,15 @@ class AllBooks extends React.Component {
             </div>
 
             <div className="search-books-results">
-              {(this.state.searchedBooks) ? (
+              {this.state.searchedBooks.length !== 0 ? (
                 <ol className="books-grid">
                   {this.state.searchedBooks.map((book)=>{
-                    var found = this.props.books.find((b)=>{
+                    const found = this.props.books.find((b)=>{
                       return (b.id=== book.id)
                     });
                     (found) ? (book.shelf = found.shelf) : book.shelf="none";
-               return <li key={book.id}><Book book={book}
-                 updateBook={this.props.updateBook}/></li>
+                    return <li key={book.id}><Book book={book}
+                      updateBook={this.props.updateBook}/></li>
                }
                )}
               </ol>
