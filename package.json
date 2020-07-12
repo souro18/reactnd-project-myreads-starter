@@ -1,11 +1,12 @@
 {
-  "homepage": "http://souro18.github.io/reactnd-project-myreads-starter/",
+  "homepage": "https://souro18.github.io/reactnd-project-myreads-starter/",
   "engines": {
     "npm": "5.8.0",
     "node": "9.11.2"
   },
   "dependencies": {
     "escape-string-regexp": "^1.0.5",
+    "node-sass": "^4.14.1",
     "prop-types": "^15.6.1",
     "react": "^16.9.0",
     "react-dom": "^16.9",

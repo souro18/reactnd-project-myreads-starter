@@ -5,6 +5,7 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 
 import Loader from './loader';
+import Login from './Login';
 const AllBooks = lazy(()=> import('./AllBooks')); 
 const MyReads = lazy(() => import('./myReads'));
 
@@ -50,12 +51,22 @@ class BooksApp extends React.Component {
                 books={this.state.books}
                 updateBook= {this.updateBook}/>
           </Route>
-          <Route exact path="/">
+          <Route path="/dashboard">
               <MyReads 
                 currentlyReading={this.state.currentlyReading}
                 wantToRead={this.state.wantToRead}
                 read={this.state.read}
                 updateBook= {this.updateBook}/>
+          </Route>
+          <Route path="/register">
+              <MyReads 
+                currentlyReading={this.state.currentlyReading}
+                wantToRead={this.state.wantToRead}
+                read={this.state.read}
+                updateBook= {this.updateBook}/>
+          </Route>
+          <Route exact path="/">
+              <Login/>
           </Route>
         </Switch>
         </Suspense>
