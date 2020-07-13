@@ -197,17 +197,13 @@ body, .app {
 	max-width: 300px;
 }
 
-.signup {
-	margin-bottom: 150px;
-}
-
 .signup-content {
 	display: flex;
-	padding: 75px 0;
+	padding: 35px 0;
 	flex-flow: wrap;
 }
 
-.signup-form, .signup-image, .signin-form, .signin-image {
+ .signup-image, .signin-form, .signin-image {
 	width: 50%;
 	overflow: hidden;
 }
@@ -234,7 +230,7 @@ figure {
 	background: #6dabe4;
 	color: #fff;
 	border-bottom: none;
-	width: auto;
+	width: 100%;
 	padding: 15px 39px;
 	border-radius: 5px;
 	margin-top: 25px;
@@ -253,7 +249,8 @@ figure {
 	font-size: 14px;
 	color: #222;
 	display: block;
-	text-align: center;
+	text-align: left;
+	margin-top: 10px;
 }
 
 .term-service {
@@ -262,9 +259,10 @@ figure {
 }
 
 .signup-form {
-	margin-left: 75px;
-	margin-right: 75px;
-	padding-left: 34px;
+	width: auto;
+	padding: 20px 30px;
+	background: white;
+	border-radius: 10px;
 }
 
 .register-form {
@@ -401,7 +399,7 @@ label.valid:after {
 .material-icons-name {
 	font-size: 18px;
 }
-.sign-in {
+.sign-in, .signup {
     display: flex;
     min-height: 100vh;
     background: #134e5e; /* fallback for old browsers */
@@ -431,7 +429,6 @@ label.valid:after {
 
 @media screen and (max-width: 1200px) {
 	.container {
-		width: calc( 90% - 30px);
         max-width: 80%;
         margin: auto;
         display: flex;
@@ -455,9 +452,6 @@ label.valid:after {
 	.signup-form {
 		margin-left: 0px;
 		margin-right: 0px;
-		padding-left: 0px;
-    /* box-sizing: border-box; */
-		padding: 0 30px;
 	}
 
 	.signin-image {
@@ -467,7 +461,11 @@ label.valid:after {
 		order: 2;
 	}
 
-	.signup-form, .signup-image, .signin-form, .signin-image {
+	.signup-image, .signin-form, .signin-image {
+		width: auto;
+		padding: 0 30px;
+	}
+	.signup-form {
 		width: auto;
 	}
 

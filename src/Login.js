@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import loginImage from './icons/login.jpg'
 
 class Login extends React.Component {
@@ -13,11 +14,10 @@ class Login extends React.Component {
                 <div className="signin-content">
                     <div className="signin-image">
                         <img src={loginImage} className='img-responsive' alt="sing up image" />
-                        <a href="#" className="signup-image-link">Create an account</a>
                     </div>
 
                     <div className="signin-form">
-                        <h2 className="form-title">Sign up</h2>
+                        <h2 className="form-title">Sign in</h2>
                         <form method="POST" className="register-form" id="login-form">
                             <div className="form-group">
                                 <label for="your_name"><i className="zmdi zmdi-account material-icons-name"></i></label>
@@ -31,6 +31,10 @@ class Login extends React.Component {
                                 <input type="submit" name="signin" id="signin" className="form-submit" value="Log in"/>
                             </div>
                         </form>
+                        <div className="signup-image-link">
+                            <span>Not a member yet? </span> 
+                            <Link to="/register">Create an account</Link>
+                        </div>
                     </div>
                 </div>
             </div>

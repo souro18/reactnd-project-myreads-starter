@@ -8,6 +8,7 @@ import Loader from './loader';
 import Login from './Login';
 const AllBooks = lazy(()=> import('./AllBooks')); 
 const MyReads = lazy(() => import('./myReads'));
+const Register = lazy(() => import('./Register'));
 
 class BooksApp extends React.Component {
   state = {
@@ -59,11 +60,7 @@ class BooksApp extends React.Component {
                 updateBook= {this.updateBook}/>
           </Route>
           <Route path="/register">
-              <MyReads 
-                currentlyReading={this.state.currentlyReading}
-                wantToRead={this.state.wantToRead}
-                read={this.state.read}
-                updateBook= {this.updateBook}/>
+              <Register />
           </Route>
           <Route exact path="/">
               <Login/>
