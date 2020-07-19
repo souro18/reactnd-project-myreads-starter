@@ -1,5 +1,7 @@
+import axios from 'axios';
 
 const api = "https://reactnd-books-api.udacity.com"
+const API = "http://localhost:8080/"
 
 
 // Generate a unique token for storing your bookshelf data on the backend server.
@@ -10,6 +12,10 @@ if (!token)
 const headers = {
   'Accept': 'application/json',
   'Authorization': token
+}
+
+const APIheader = {
+  'Accept': 'application/json',
 }
 
 export const get = (bookId) =>
@@ -42,3 +48,13 @@ export const search = (query) =>
     body: JSON.stringify({ query })
   }).then(res => res.json())
     .then(data => data.books)
+
+
+export const register = (data) => {
+  return axios.post(API+ 'user/register', data, { APIheader })
+    .then(res => res.json())
+}
+
+export const login = (data) => {
+  return axios.post(API+ 'user/login', data, { APIheader })
+}

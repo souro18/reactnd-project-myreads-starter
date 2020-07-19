@@ -6,6 +6,7 @@ import './App.css'
 
 import Loader from './loader';
 import Login from './Login';
+import Auth from './Auth';
 const AllBooks = lazy(()=> import('./AllBooks')); 
 const MyReads = lazy(() => import('./myReads'));
 const Register = lazy(() => import('./Register'));
@@ -46,26 +47,23 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         <Suspense fallback={<Loader/>}>
-        <Switch>
+          <Switch>
+          <Route path="/register" component={Register} />
+          <Route path="/login" render={props => <Login {...props} />} />
+          <Route path="/" component={Auth} />
           <Route path="/search">
               <AllBooks 
                 books={this.state.books}
                 updateBook= {this.updateBook}/>
           </Route>
-          <Route path="/dashboard">
+          <Route path="/dashboard" render={props =>
               <MyReads 
                 currentlyReading={this.state.currentlyReading}
                 wantToRead={this.state.wantToRead}
                 read={this.state.read}
                 updateBook= {this.updateBook}/>
-          </Route>
-          <Route path="/register">
-              <Register />
-          </Route>
-          <Route exact path="/">
-              <Login/>
-          </Route>
-        </Switch>
+          }/>
+          </Switch>
         </Suspense>
       </div>
     )

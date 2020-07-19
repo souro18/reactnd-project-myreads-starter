@@ -268,7 +268,10 @@ figure {
 .register-form {
 	width: 100%;
 }
-
+.error {
+	color: red;
+	font-size: smaller;
+}
 .form-group {
 	position: relative;
 	margin-bottom: 25px;
