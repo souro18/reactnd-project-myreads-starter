@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import { Redirect } from 'react-router-dom';
 
 const Auth = props => {
@@ -6,9 +6,18 @@ const Auth = props => {
         const token = localStorage.getItem('token');
         return token && token.length >20;
     }
+
+    const redirectToLogin = () => {
+        const isAuth = isAuthenticated()
+        if(!isAuth) {
+            props.history.push('/login');
+        }
+    }
+    useEffect(() => redirectToLogin())
+
     return (
         <div>
-            {!isAuthenticated() && <Redirect to="/login"/>}
+            {props.children}
         </div>
     )
 }

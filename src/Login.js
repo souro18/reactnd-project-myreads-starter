@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom'
-
+import { connect } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 
@@ -82,4 +82,17 @@ const Login = props => {
 
 }
 
-export default Login;
+const mapStateToProps = state => {
+    // const menu = state.menuReducer;
+    console.log(state)
+    return { error: state.error }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+    //   onSuccess: (text) => {
+    //     dispatch(modifySearch(text))
+    //   }
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

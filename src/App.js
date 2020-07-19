@@ -50,7 +50,7 @@ class BooksApp extends React.Component {
           <Switch>
           <Route path="/register" component={Register} />
           <Route path="/login" render={props => <Login {...props} />} />
-          <Route path="/" component={Auth} />
+          <Route path="/" component={Auth}>
           <Route path="/search">
               <AllBooks 
                 books={this.state.books}
@@ -63,6 +63,7 @@ class BooksApp extends React.Component {
                 read={this.state.read}
                 updateBook= {this.updateBook}/>
           }/>
+          </Route>
           </Switch>
         </Suspense>
       </div>
