@@ -1,7 +1,8 @@
 import React from 'react';
 import Book from './Book'
-import { Link } from 'react-router-dom'
-import * as BooksAPI from './BooksAPI'
+import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
+import * as BooksAPI from './BooksAPI';
 
 class AllBooks extends React.Component {
 	state = {
@@ -36,6 +37,12 @@ class AllBooks extends React.Component {
     }
   }
 
+  addBook=(book, state) => {
+    book.state = state;
+    BooksAPI.addBook(book).then((res) => {
+      console.log("added", res)
+    })
+  }
 
   render() {
     const debouncedUpdate = this.debounce(this.updateQuery, 500);
@@ -43,7 +50,7 @@ class AllBooks extends React.Component {
 			<div className="search-books">
         <div className="search-books-bar">
           <Link to={{
-                pathname: '/',
+                pathname: '/dashboard',
               }} className="close-search">
                 Close
               </Link>
@@ -60,9 +67,12 @@ class AllBooks extends React.Component {
                   const found = this.props.books.find((b)=>{
                     return (b.id=== book.id)
                   });
-                  (found) ? (book.shelf = found.shelf) : book.shelf="none";
+                  if(found) {
+                    return;
+                  }
+                  book.state="none";
                   return <li key={book.id}><Book book={book}
-                    updateBook={this.props.updateBook}/></li>
+                    updateBook={this.addBook}/></li>
               }
               )}
             </ol>
@@ -76,4 +86,10 @@ class AllBooks extends React.Component {
 	}
 }
 
-export default AllBooks;
+const mapStateToProps = state => {
+  return {
+    books: state.books,
+   }
+}
+
+export default connect(mapStateToProps, null)(AllBooks);;

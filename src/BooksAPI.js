@@ -5,13 +5,13 @@ const API = "http://localhost:8080/"
 
 
 // Generate a unique token for storing your bookshelf data on the backend server.
-let token = localStorage.token
-if (!token)
-  token = localStorage.token = Math.random().toString(36).substr(-8)
+let tokens = localStorage.token
+if (!tokens)
+  tokens = localStorage.token = Math.random().toString(36).substr(-8)
 
 const headers = {
   'Accept': 'application/json',
-  'Authorization': token
+  'Authorization': tokens,
 }
 
 const APIheader = {
@@ -57,4 +57,12 @@ export const register = (data) => {
 
 export const login = (data) => {
   return axios.post(API+ 'user/login', data, { APIheader })
+}
+
+export const addBook = (data) => {
+  return axios.post(API+ 'book', data, { headers });
+}
+
+export const getAllBooks = () => {
+  return axios.get(API+ 'books', { headers });
 }

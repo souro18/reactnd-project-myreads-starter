@@ -16,10 +16,10 @@ const Book = (props) => {
 				<select onChange={(event)=>
 				props.updateBook(props.book,event.target.value)} defaultValue="move">
 				<option value="move" disabled>Move to...</option>
-				<option value="currentlyReading" className={(props.book.shelf==='currentlyReading')? 'selected-shelf' : null}>Currently Reading</option>
-				<option value="wantToRead" className={(props.book.shelf==='wantToRead')? 'selected-shelf' : null}>Want to Read</option>
-				<option value="read" className={(props.book.shelf==='read')? 'selected-shelf' : null}>Read</option>
-				<option value="none" className={(props.book.shelf==='none')? 'selected-shelf' : null}>None</option>
+				<option value="currentlyReading" className={(props.book.state ==='currentlyReading')? 'selected-shelf' : null}>Currently Reading</option>
+				<option value="wantToRead" className={(props.book.state==='wantToRead')? 'selected-shelf' : null}>Want to Read</option>
+				<option value="read" className={(props.book.state==='read')? 'selected-shelf' : null}>Read</option>
+				<option value="none" className={(props.book.state ==='none')? 'selected-shelf' : null}>None</option>
 				</select>
 			</div>
 			</div>

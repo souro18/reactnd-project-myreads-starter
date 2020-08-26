@@ -91,7 +91,7 @@ const Register = props => {
                         </Formik>
                         <div className="signup-image-link">
                             <span>Already a member? </span>
-                            <Link to="/">log in</Link>
+                            <Link to="/login">log in</Link>
                         </div>
                     </div>
                 </div>

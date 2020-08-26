@@ -19,18 +19,12 @@ class BooksApp extends React.Component {
     read :[]
   }
 
-  componentDidMount(){
-    BooksAPI.getAll().then((books)=>{
-      this.filterBook(books)
-     });
-  }
-
-  filterBook=(books)=> {
-    const currentlyReading = books.filter(book => book.shelf === "currentlyReading");
-    const wantToRead = books.filter(book => book.shelf === "wantToRead");
-    const read = books.filter(book => book.shelf === "read");
-    this.setState({books, currentlyReading, wantToRead, read});
-  }
+  // filterBook=(books)=> {
+  //   const currentlyReading = books.filter(book => book.shelf === "currentlyReading");
+  //   const wantToRead = books.filter(book => book.shelf === "wantToRead");
+  //   const read = books.filter(book => book.shelf === "read");
+  //   this.setState({books, currentlyReading, wantToRead, read});
+  // }
 
   updateBook=(book, Shelf) =>{
     BooksAPI.update(book, Shelf).then((res)=> {
@@ -57,10 +51,7 @@ class BooksApp extends React.Component {
                   updateBook= {this.updateBook}/>
             </Route>
             <Route path="/dashboard" render={props =>
-                <MyReads 
-                  currentlyReading={this.state.currentlyReading}
-                  wantToRead={this.state.wantToRead}
-                  read={this.state.read}
+                <MyReads
                   updateBook= {this.updateBook}/>
             }/>
           {/* </Route> */}

@@ -1,10 +1,13 @@
-import { SET_USER, SET_ERROR, SET_BOOK, INVALIDATE} from './contants';
+import { SET_USER, SET_ERROR, SET_BOOK, INVALIDATE } from './contants';
 
 const defaultState = {
     user: {},
     error: {},
-    isLoggedIn: false,
+    isLoggedIn: localStorage.token.length > 10 ? true: false,
     books: [],
+    read: [],
+    wantToRead: [],
+    currentlyReading: [],
 }
 const userReducer = (state= defaultState,action) => {
     switch(action.type) {
@@ -13,9 +16,13 @@ const userReducer = (state= defaultState,action) => {
         case SET_ERROR:
             return {...state, error: action.payload}
         case SET_BOOK:
-            return { ...state, books: action.payload}
+            const books = action.payload.data.books;
+            const currentlyReading = books.filter(book => book.state === "currentlyReading");
+            const wantToRead = books.filter(book => book.state === "wantToRead");
+            const read = books.filter(book => book.state === "read");
+            return { ...state, books, currentlyReading, wantToRead, read}
         case INVALIDATE:
-            return defaultState
+            return defaultState;
         default:
             return state;
     }

@@ -1,9 +1,18 @@
-import React, {memo} from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {connect} from 'react-redux';
-import Book from './Book'
+import { setBook } from './redux-module/action-creator';
+import Book from './Book';
+
+import * as BooksAPI from './BooksAPI'
 
 function MyReads(props) {
+  useEffect( () => {
+    BooksAPI.getAllBooks().then((books)=>{
+      props.onBooksLoaded(books)
+     });
+  }, []);
+  
     const shelfData = [{
       name: 'Currently Reading',
       books: props.currentlyReading,
@@ -49,6 +58,20 @@ function MyReads(props) {
 	
 }
 const mapStateToProps = state => {
-  return { isLogged: state.isLoggedIn }
+  return {
+    isLogged: state.isLoggedIn,
+    books: state.books,
+    currentlyReading: state.currentlyReading,
+    wantToRead: state.wantToRead,
+    read: state.read,
+   }
 }
-export default  connect(mapStateToProps, null)(MyReads);
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onBooksLoaded: (books) => {
+      dispatch(setBook(books))
+    }
+  }
+}
+export default  connect(mapStateToProps, mapDispatchToProps)(MyReads);

@@ -12,6 +12,8 @@ const Auth = props => {
         console.log("auth");
         if(!props.isLogged && props.location.pathname !== '/register') {
             props.history.push('/login');
+        } else if(props.isLogged) {
+            props.history.push('/dashboard');
         }
     }
    useEffect(() => redirectToLogin(), [])
