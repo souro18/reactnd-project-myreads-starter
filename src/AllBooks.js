@@ -2,12 +2,10 @@ import React from 'react';
 import Book from './Book'
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
+import { setSearchBook, updateSearchBook } from './redux-module/action-creator';
 import * as BooksAPI from './BooksAPI';
 
 class AllBooks extends React.Component {
-	state = {
-    searchedBooks : []
-  }
 
   debounce = (fn, time) => {
     let timer;
@@ -23,25 +21,25 @@ class AllBooks extends React.Component {
     query =query.trim()
     if(query) {
       BooksAPI.search(query).then((res)=> {
-        console.log(res)
-        if(res.error) {
-          this.setState({ searchedBooks:[]})
-        }
-        else {
-          this.setState({searchedBooks:res})
-        }
+        this.props.onBooksLoaded(res)
       })
-    }
-    else {
-      this.setState({searchedBooks:[]})
     }
   }
 
   addBook=(book, state) => {
+    const existingBook = this.props.books.find((b)=>{
+      return (b.title === book.title && book.authors[0] === b.authors[0])
+    });
     book.state = state;
-    BooksAPI.addBook(book).then((res) => {
-      console.log("added", res)
-    })
+    if(existingBook) {
+      BooksAPI.updateBook(book).then((res) => {
+        this.props.onBookAdded(book, false)
+      })
+    } else {
+      BooksAPI.addBook(book).then((res) => {
+        this.props.onBookAdded(res.data.book, true)
+      })
+    }
   }
 
   render() {
@@ -61,19 +59,11 @@ class AllBooks extends React.Component {
           </div>
 
           <div className="search-books-results">
-            {this.state.searchedBooks.length !== 0 ? (
+            {this.props.searchedBooks.length !== 0 ? (
               <ol className="books-grid">
-                {this.state.searchedBooks.map((book)=>{
-                  const found = this.props.books.find((b)=>{
-                    return (b.title === book.title)
-                  });
-                  if(found) {
-                    return null;
-                  } else {
-                    book.state="none";
+                {this.props.searchedBooks.map((book)=>{
                     return <li key={book.id}><Book book={book}
                     updateBook={this.addBook}/></li>
-                  }   
               }
               )}
             </ol>
@@ -90,7 +80,19 @@ class AllBooks extends React.Component {
 const mapStateToProps = state => {
   return {
     books: state.books,
+    searchedBooks: state.searchedBooks,
    }
 }
 
-export default connect(mapStateToProps, null)(AllBooks);;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onBooksLoaded: (books) => {
+      dispatch(setSearchBook(books))
+    },
+    onBookAdded: (book, isNew) => {
+      dispatch(updateSearchBook(book, isNew))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AllBooks);;

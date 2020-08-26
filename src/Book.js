@@ -30,4 +30,4 @@ const Book = (props) => {
 	)
 }
 
-export default memo(Book);
+export default Book;

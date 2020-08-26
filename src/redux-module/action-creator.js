@@ -1,4 +1,4 @@
-import { SET_USER, SET_ERROR, SET_BOOK, INVALIDATE} from './contants';
+import { SET_USER, SET_ERROR, SET_BOOK, SET_SEARCHED, UPDATE_BOOK, UPDATE_SEARCHED_BOOK, INVALIDATE} from './contants';
 
 const setUser = user => {
     return {
@@ -27,4 +27,19 @@ const invalidate = () => {
     }
 }
 
-export { setUser, setError,setBook ,invalidate};
+const setSearchBook = books => {
+    return {
+        type: SET_SEARCHED,
+        payload: books
+    }
+}
+
+const updateSearchBook = (book, isNew) => {
+    return {
+        type: UPDATE_SEARCHED_BOOK,
+        payload: book,
+        isNew
+    }
+}
+
+export { setUser, setError,setBook , setSearchBook, updateSearchBook, invalidate};
