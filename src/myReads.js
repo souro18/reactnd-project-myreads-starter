@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {connect} from 'react-redux';
-import { setBook } from './redux-module/action-creator';
+import { setBook, updateBook } from './redux-module/action-creator';
 import Book from './Book';
 
 import * as BooksAPI from './BooksAPI'
@@ -16,7 +16,7 @@ function MyReads(props) {
   const updateBook = (book, shelf) => {
     book.state = shelf;
     BooksAPI.updateBook(book).then((res) => {
-      console.log(res);
+      props.onBookUpdate(book)
     })
   }
     const shelfData = [{
@@ -77,6 +77,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onBooksLoaded: (books) => {
       dispatch(setBook(books))
+    },
+    onBookUpdate: book => {
+      dispatch(updateBook(book));
     }
   }
 }

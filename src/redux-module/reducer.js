@@ -10,6 +10,13 @@ const defaultState = {
     currentlyReading: [],
     searchedBooks: []
 }
+
+const filterBooks = (books) => {
+    const currentlyReading = books.filter(book => book.state === "currentlyReading");
+    const wantToRead = books.filter(book => book.state === "wantToRead");
+    const read = books.filter(book => book.state === "read");
+    return { currentlyReading,  wantToRead, read}
+}
 const userReducer = (state= defaultState,action) => {
     switch(action.type) {
         case SET_USER:
@@ -18,11 +25,12 @@ const userReducer = (state= defaultState,action) => {
             return {...state, error: action.payload}
         case SET_BOOK:
             const books = action.payload.data.books;
-            const currentlyReading = books.filter(book => book.state === "currentlyReading");
-            const wantToRead = books.filter(book => book.state === "wantToRead");
-            const read = books.filter(book => book.state === "read");
-            return { ...state, books, currentlyReading, wantToRead, read}
+            const { currentlyReading,  wantToRead, read} = filterBooks(books);
+            return { ...state, books, currentlyReading, wantToRead, read};
         case SET_SEARCHED:
+            if(action.payload.error) {
+                return {...state, searchedBooks: []}
+            }
             const searchedBooks = action.payload.map(book => {
                 const isExisting = state.books.find(b => (b.title === book.title && book.authors[0] === b.authors[0]));
                 isExisting? book.state = isExisting.state : book.state = "none";
@@ -40,6 +48,17 @@ const userReducer = (state= defaultState,action) => {
                 return {...state, searchedBooks: updatedBooks, books: [...state.books, { ...action.payload}]}
             }
             return {...state, searchedBooks: updatedBooks}
+        case UPDATE_BOOK:
+            const updatedBook = state.books.map(book => {
+                if(book._id === action.payload._id) {
+                    book.state = action.payload.state;
+                }
+                return book;
+            })
+            const filteredBooks = filterBooks(updatedBook);
+            return {...state,
+                books: updatedBook, ...filteredBooks}
+
         case INVALIDATE:
             return defaultState;
         default:

@@ -42,4 +42,11 @@ const updateSearchBook = (book, isNew) => {
     }
 }
 
-export { setUser, setError,setBook , setSearchBook, updateSearchBook, invalidate};
+const updateBook = book => {
+    return {
+        type: UPDATE_BOOK,
+        payload: book
+    }
+}
+
+export { setUser, setError,setBook , setSearchBook, updateSearchBook, updateBook, invalidate};
