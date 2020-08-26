@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = "https://reactnd-books-api.udacity.com"
-const API = "http://localhost:8080/"
+const API = "https://myread-apps.herokuapp.com/"
 
 
 // Generate a unique token for storing your bookshelf data on the backend server.
