@@ -12,7 +12,13 @@ function MyReads(props) {
       props.onBooksLoaded(books)
      });
   }, []);
-  
+
+  const updateBook = (book, shelf) => {
+    book.state = shelf;
+    BooksAPI.updateBook(book).then((res) => {
+      console.log(res);
+    })
+  }
     const shelfData = [{
       name: 'Currently Reading',
       books: props.currentlyReading,
@@ -36,7 +42,7 @@ function MyReads(props) {
                     <div className="bookshelf-books">
                       <ol className="books-grid">
                         {shelf.books.map((book)=>
-                        <li key={book.id}><Book book={book} updateBook= {props.updateBook}/></li>
+                        <li key={book.id}><Book book={book} updateBook= {updateBook}/></li>
                       )}
                       </ol>
                     </div>

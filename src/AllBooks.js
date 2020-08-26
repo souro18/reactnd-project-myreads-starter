@@ -45,7 +45,7 @@ class AllBooks extends React.Component {
   }
 
   render() {
-    const debouncedUpdate = this.debounce(this.updateQuery, 500);
+    const debouncedUpdate = this.debounce(this.updateQuery, 200);
 		return (
 			<div className="search-books">
         <div className="search-books-bar">
@@ -65,14 +65,15 @@ class AllBooks extends React.Component {
               <ol className="books-grid">
                 {this.state.searchedBooks.map((book)=>{
                   const found = this.props.books.find((b)=>{
-                    return (b.id=== book.id)
+                    return (b.title === book.title)
                   });
                   if(found) {
-                    return;
-                  }
-                  book.state="none";
-                  return <li key={book.id}><Book book={book}
+                    return null;
+                  } else {
+                    book.state="none";
+                    return <li key={book.id}><Book book={book}
                     updateBook={this.addBook}/></li>
+                  }   
               }
               )}
             </ol>
