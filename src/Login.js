@@ -5,6 +5,7 @@ import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { login } from './BooksAPI';
+import { setUser } from './redux-module/action-creator';
 
 import loginImage from './icons/login.jpg'
 
@@ -19,6 +20,7 @@ const Login = props => {
     const onLogin = data => {
         login(data)
         .then(res => {
+            props.onSuccess(res.data.user);
             localStorage.setItem("token", res.data.token)
             props.history.push('/dashboard');
         })
@@ -89,9 +91,9 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-    //   onSuccess: (text) => {
-    //     dispatch(modifySearch(text))
-    //   }
+      onSuccess: (user) => {
+        dispatch(setUser(user))
+      }
     }
   }
 

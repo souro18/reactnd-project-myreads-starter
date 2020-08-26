@@ -1,25 +1,30 @@
 import React, { useState, useEffect} from 'react';
-import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const Auth = props => {
-    const isAuthenticated = () => {
-        const token = localStorage.getItem('token');
-        return token && token.length >20;
-    }
+    // const isAuthenticated = () => {
+    //     const token = localStorage.getItem('token');
+    //     return token && token.length >20;
+    // }
 
     const redirectToLogin = () => {
-        const isAuth = isAuthenticated()
-        if(!isAuth) {
+        //const isAuth = isAuthenticated()
+        console.log("auth");
+        if(!props.isLogged && props.location.pathname !== '/register') {
             props.history.push('/login');
         }
     }
-    useEffect(() => redirectToLogin())
+   useEffect(() => redirectToLogin(), [])
 
     return (
         <div>
-            {props.children}
+            {/* {redirectToLogin()} */}
+            {/* {props.children} */}
+            {/* <span>asdsad</span> */}
         </div>
     )
 }
-
-export default Auth;
+const mapStateToProps = state => {
+    return { isLogged: state.isLoggedIn }
+}
+export default connect(mapStateToProps, null)(Auth);

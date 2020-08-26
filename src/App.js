@@ -47,24 +47,24 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         <Suspense fallback={<Loader/>}>
-          <Switch>
+          {/* <Switch> */}
           <Route path="/register" component={Register} />
           <Route path="/login" render={props => <Login {...props} />} />
-          <Route path="/" component={Auth}>
-          <Route path="/search">
-              <AllBooks 
-                books={this.state.books}
-                updateBook= {this.updateBook}/>
-          </Route>
-          <Route path="/dashboard" render={props =>
-              <MyReads 
-                currentlyReading={this.state.currentlyReading}
-                wantToRead={this.state.wantToRead}
-                read={this.state.read}
-                updateBook= {this.updateBook}/>
-          }/>
-          </Route>
-          </Switch>
+          <Route path="/" component={Auth} />
+            <Route path="/search">
+                <AllBooks 
+                  books={this.state.books}
+                  updateBook= {this.updateBook}/>
+            </Route>
+            <Route path="/dashboard" render={props =>
+                <MyReads 
+                  currentlyReading={this.state.currentlyReading}
+                  wantToRead={this.state.wantToRead}
+                  read={this.state.read}
+                  updateBook= {this.updateBook}/>
+            }/>
+          {/* </Route> */}
+          {/* </Switch> */}
         </Suspense>
       </div>
     )

@@ -1,5 +1,6 @@
 import React, {memo} from 'react'
 import { Link } from 'react-router-dom'
+import {connect} from 'react-redux';
 import Book from './Book'
 
 function MyReads(props) {
@@ -47,5 +48,7 @@ function MyReads(props) {
 			)
 	
 }
-
-export default memo(MyReads);
+const mapStateToProps = state => {
+  return { isLogged: state.isLoggedIn }
+}
+export default  connect(mapStateToProps, null)(MyReads);
