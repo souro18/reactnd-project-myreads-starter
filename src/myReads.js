@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {connect} from 'react-redux';
-import { setBook, updateBook } from './redux-module/action-creator';
+import { invalidate, setBook, updateBook } from './redux-module/action-creator';
 import Book from './Book';
 
 import * as BooksAPI from './BooksAPI'
@@ -33,6 +33,11 @@ function MyReads(props) {
 			<div className="list-books">
             <div className="list-books-title">
               <h1>MyReads</h1>
+              <div className="profile-info">
+                <button
+                onClick = { () =>  props.history.push('/login') }
+                >Log out</button>
+              </div>
             </div>
             <div className="list-books-content">
               <div>
@@ -80,7 +85,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     onBookUpdate: book => {
       dispatch(updateBook(book));
-    }
+    },
   }
 }
 export default  connect(mapStateToProps, mapDispatchToProps)(MyReads);

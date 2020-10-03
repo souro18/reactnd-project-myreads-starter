@@ -12,9 +12,10 @@ body, .app {
 
 /* main page */
 .list-books-title {
-	padding: 10px 0;
+	padding: 10px 30px;
 	background: #2e7c31;
-	text-align: center;
+	display: flex;
+	justify-content: space-between;
 }
 
 .list-books-title h1 {
@@ -23,6 +24,11 @@ body, .app {
 	color: white;
 }
 
+.profile-info button {
+	padding: 10px 15px;
+	border-radius: 5px;
+	min-width: 90px;
+}
 .list-books-content {
 	padding: 0 0 80px;
 	flex: 1;
