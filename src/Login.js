@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { login } from './BooksAPI';
-import { setUser } from './redux-module/action-creator';
+import { invalidate, setUser } from './redux-module/action-creator';
 
 import loginImage from './icons/login.jpg'
 
@@ -16,12 +16,15 @@ const loginSchema = Yup.object().shape({
     password: Yup.string().required("This field is required"),
   });
 const Login = props => {
-    const [error , setError ] = useState({})
+    const [error , setError ] = useState({});
+    useEffect(() => {
+        props.invalidateState()
+    }, [props.location]);
     const onLogin = data => {
         login(data)
         .then(res => {
+            sessionStorage.setItem("token", res.data.token)
             props.onSuccess(res.data.user);
-            localStorage.setItem("token", res.data.token)
             props.history.push('/dashboard');
         })
         .catch(e => {console.log(e); e.response && setError(e.response.data)})
@@ -93,6 +96,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
       onSuccess: (user) => {
         dispatch(setUser(user))
+      },
+      invalidateState: () => {
+          dispatch(invalidate());
       }
     }
   }

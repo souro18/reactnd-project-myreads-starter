@@ -5,21 +5,24 @@ const API = "https://myread-apps.herokuapp.com/"
 
 
 // Generate a unique token for storing your bookshelf data on the backend server.
-let tokens = localStorage.token
-if (!tokens)
-  tokens = localStorage.token = Math.random().toString(36).substr(-8)
+// let tokens = 
+// if (!tokens)
+//   tokens = Math.random().toString(36).substr(-8)
 
-const headers = {
+const getHeaders = () => {
+  return {
   'Accept': 'application/json',
-  'Authorization': tokens,
+  'Authorization': sessionStorage.getItem("token"),
+}
 }
 
 const APIheader = {
   'Accept': 'application/json',
 }
 
-export const search = (query) =>
-  fetch(`${api}/search`, {
+export const search = (query) => {
+const headers = getHeaders();
+  return fetch(`${api}/search`, {
     method: 'POST',
     headers: {
       ...headers,
@@ -28,6 +31,7 @@ export const search = (query) =>
     body: JSON.stringify({ query })
   }).then(res => res.json())
     .then(data => data.books)
+}
 
 
 export const register = (data) => {
@@ -40,13 +44,16 @@ export const login = (data) => {
 }
 
 export const addBook = (data) => {
+  const headers = getHeaders();
   return axios.post(API+ 'book', data, { headers });
 }
 
 export const updateBook = (data) => {
+  const headers = getHeaders();
   return axios.put(API+ 'book', data, { headers })
 }
 
 export const getAllBooks = () => {
+  const headers = getHeaders();
   return axios.get(API+ 'books', { headers });
 }

@@ -23,7 +23,7 @@ const setBook = books => {
 
 const invalidate = () => {
     return {
-        type: SET_ERROR,
+        type: INVALIDATE,
     }
 }
 

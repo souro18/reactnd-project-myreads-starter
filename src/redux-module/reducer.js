@@ -1,14 +1,16 @@
 import { SET_USER, SET_ERROR, SET_BOOK, SET_SEARCHED, UPDATE_BOOK, UPDATE_SEARCHED_BOOK, INVALIDATE } from './contants';
 
-const defaultState = {
+const getDefaultState = () => {
+    return {
     user: {},
     error: {},
-    isLoggedIn: localStorage.token.length > 10 ? true: false,
+    isLoggedIn: sessionStorage.getItem("token") ? true: false,
     books: [],
     read: [],
     wantToRead: [],
     currentlyReading: [],
     searchedBooks: []
+}
 }
 
 const filterBooks = (books) => {
@@ -17,6 +19,8 @@ const filterBooks = (books) => {
     const read = books.filter(book => book.state === "read");
     return { currentlyReading,  wantToRead, read}
 }
+
+const defaultState = getDefaultState();
 const userReducer = (state= defaultState,action) => {
     switch(action.type) {
         case SET_USER:
@@ -60,7 +64,8 @@ const userReducer = (state= defaultState,action) => {
                 books: updatedBook, ...filteredBooks}
 
         case INVALIDATE:
-            return defaultState;
+            sessionStorage.removeItem("token");
+            return getDefaultState();
         default:
             return state;
     }
