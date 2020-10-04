@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ccdab1da37e95285165e9e21959f14c8",
+    "revision": "f3968de4253299d83aaeebcb657cab9e",
     "url": "/reactnd-project-myreads-starter/index.html"
   },
   {
-    "revision": "4beb4b828603f8788636",
+    "revision": "523e57d012fed6b9895a",
     "url": "/reactnd-project-myreads-starter/static/css/main.a0cc192f.chunk.css"
   },
   {
@@ -28,8 +28,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/reactnd-project-myreads-starter/static/js/5.6bc9678c.chunk.js"
   },
   {
-    "revision": "4beb4b828603f8788636",
-    "url": "/reactnd-project-myreads-starter/static/js/main.a44e78dc.chunk.js"
+    "revision": "523e57d012fed6b9895a",
+    "url": "/reactnd-project-myreads-starter/static/js/main.82d84404.chunk.js"
   },
   {
     "revision": "ebe92e2ff8b37b852933",
