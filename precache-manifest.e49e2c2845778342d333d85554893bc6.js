@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f3968de4253299d83aaeebcb657cab9e",
+    "revision": "49e81e0e8ecbac91ee622644e5c49a56",
     "url": "/reactnd-project-myreads-starter/index.html"
   },
   {
-    "revision": "523e57d012fed6b9895a",
-    "url": "/reactnd-project-myreads-starter/static/css/main.a0cc192f.chunk.css"
+    "revision": "4c60d8dad067eaba74b5",
+    "url": "/reactnd-project-myreads-starter/static/css/main.a907fe05.chunk.css"
   },
   {
     "revision": "a2161081b06a8d344a03",
@@ -16,24 +16,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/reactnd-project-myreads-starter/static/js/2.0b77844a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7aee79ef630ab3801223",
-    "url": "/reactnd-project-myreads-starter/static/js/3.5cbd49c0.chunk.js"
+    "revision": "680857a4fccdc8c01059",
+    "url": "/reactnd-project-myreads-starter/static/js/3.2c18e976.chunk.js"
   },
   {
-    "revision": "8ff0052f3ac3f4fc3a39",
-    "url": "/reactnd-project-myreads-starter/static/js/4.679577f9.chunk.js"
+    "revision": "e8ead5d819bdf94c8164",
+    "url": "/reactnd-project-myreads-starter/static/js/4.4402c027.chunk.js"
   },
   {
     "revision": "3d99e4a99e807dff13d4",
     "url": "/reactnd-project-myreads-starter/static/js/5.6bc9678c.chunk.js"
   },
   {
-    "revision": "523e57d012fed6b9895a",
-    "url": "/reactnd-project-myreads-starter/static/js/main.82d84404.chunk.js"
+    "revision": "4c60d8dad067eaba74b5",
+    "url": "/reactnd-project-myreads-starter/static/js/main.e0dd1bd9.chunk.js"
   },
   {
-    "revision": "ebe92e2ff8b37b852933",
-    "url": "/reactnd-project-myreads-starter/static/js/runtime-main.f1148a7c.js"
+    "revision": "844560aca7a6b694d4f7",
+    "url": "/reactnd-project-myreads-starter/static/js/runtime-main.a4b68390.js"
   },
   {
     "revision": "75d390e5eabc3254418e950df631389b",
